@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="toolbar">
+    <a *ngFor="let item of toolbarItems"
+       [routerLink]="['../' + item.path]"
+       routerLinkActive="toolbar__item--active"
+       class="toolbar__item"
+    >
+      {{ item.label }}
+    </a>
+  </div>
+
+  <div class="games-container">
+    <app-game-card *ngFor="let game of gamesToDisplay$ | async; trackBy: trackById"
+                   [game]="game"
+                   [canShowNew]="(activeTab$ | async) !== 'new'"
+                   [canShowTop]="(activeTab$ | async) !== 'top'"
+    ></app-game-card>
+  </div>
+</div>
+

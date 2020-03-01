@@ -1,0 +1,118 @@
+.container {
+  position: relative;
+  cursor: pointer;
+
+  &.hidden {
+    display: none;
+  }
+
+  &:hover .game-card {
+    &__background {
+      transform: scale(1.1, 1.1);
+    }
+
+    &__play-btn {
+      display: block;
+    }
+
+    &__name {
+      display: flex;
+    }
+  }
+}
+
+.game-card {
+  position: relative;
+  width: 300px;
+  height: 210px;
+  margin: 25px 8px;
+  border-radius: 20px;
+  overflow: hidden;
+
+  &__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+
+    transform: scale(1, 1);
+    transition: all .15s ease;
+  }
+
+  &__play-btn {
+    display: none;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 4px solid #FFFFFF;
+    background-color: rgba(141, 198, 63, 0.6);
+
+    &:before {
+      content: "";
+      border-style: solid;
+      border-width: 24px 0 24px 34px;
+      border-color: transparent transparent transparent #FFFFFF;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-33%, -50%);
+    }
+  }
+
+
+  &__jackpot,
+  &__name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 46px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  &__jackpot {
+    top: 0;
+  }
+
+  &__name {
+    display: none;
+    bottom: 0;
+  }
+}
+
+.ribbon {
+  position: absolute;
+  right: -18px;
+  top: -31px;
+
+  &__image {
+    width: 170px;
+  }
+
+  &__label {
+    position: absolute;
+    top: 53px;
+    right: 42px;
+
+    font-size: 22px;
+    font-weight: 700;
+    transform: rotate(45deg);
+  }
+
+  &.new .ribbon__label {
+    color: #FFFFFF;
+  }
+
+  &.top .ribbon__label {
+    color: #8DC63F;
+  }
+}
