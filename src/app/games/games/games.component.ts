@@ -18,9 +18,6 @@ export class GamesComponent implements OnInit {
   /** An array of toolbar items. */
   readonly toolbarItems: ToolbarItem[] = TOOLBAR_ITEMS;
 
-  /** An observable with active tab path. */
-  activeTab$: Observable<string>;
-
   /** An observable with games related to active tab. */
   gamesToDisplay$: Observable<Game[]>;
 
@@ -36,7 +33,7 @@ export class GamesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activeTab$ = this.route.params.pipe(
+    const activeTab$ = this.route.params.pipe(
       map(params => params.category),
       tap(activeTab => {
         this.canShowNew = activeTab !== CATEGORIES.NEW;
@@ -49,7 +46,7 @@ export class GamesComponent implements OnInit {
     );
 
     this.gamesToDisplay$ = combineLatest([
-      this.activeTab$,
+      activeTab$,
       allGames$,
       jackpots$
     ]).pipe(
