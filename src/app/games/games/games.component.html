@@ -12,8 +12,8 @@
   <div class="games-container">
     <app-game-card *ngFor="let game of gamesToDisplay$ | async; trackBy: trackById"
                    [game]="game"
-                   [canShowNew]="(activeTab$ | async) !== 'new'"
-                   [canShowTop]="(activeTab$ | async) !== 'top'"
+                   [canShowNew]="canShowNew"
+                   [canShowTop]="canShowTop"
     ></app-game-card>
   </div>
 </div>

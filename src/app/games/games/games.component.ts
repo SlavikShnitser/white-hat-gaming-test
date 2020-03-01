@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, interval, Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/internal/operators';
+import { map, switchMap, tap } from 'rxjs/internal/operators';
 
 import { GamesService } from '../games.service';
 import { Game } from '../models/Game';
@@ -24,6 +24,12 @@ export class GamesComponent implements OnInit {
   /** An observable with games related to active tab. */
   gamesToDisplay$: Observable<Game[]>;
 
+  /** Defines if "NEW" ribbon can be shown. */
+  canShowNew: boolean;
+
+  /** Defines if "TOP" ribbon can be shown. */
+  canShowTop: boolean;
+
   constructor(
     private route: ActivatedRoute,
     private gamesService: GamesService
@@ -31,7 +37,11 @@ export class GamesComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeTab$ = this.route.params.pipe(
-      map(params => params.category)
+      map(params => params.category),
+      tap(activeTab => {
+        this.canShowNew = activeTab !== CATEGORIES.NEW;
+        this.canShowTop = activeTab !== CATEGORIES.TOP;
+      })
     );
     const allGames$ = this.gamesService.getGames();
     const jackpots$ = interval(FETCH_JACKPOT_INTERVAL).pipe(
