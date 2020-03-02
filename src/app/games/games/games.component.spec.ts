@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { GamesComponent } from './games.component';
 import { GamesService } from '../games.service';
 import { JackpotInfo } from '../models/JackpotInfo';
-import { CATEGORIES } from '../constants';
+import { CATEGORIES, JACKPOT, OTHER } from '../constants';
 import { getGame } from '../test-utils';
 
 describe('GamesComponent', () => {
@@ -63,21 +63,28 @@ describe('GamesComponent', () => {
   });
 
   it('should filter games list by category', () => {
-    const pokerGame = getGame([CATEGORIES.POKER]);
+    const newPokerGame = getGame([CATEGORIES.NEW, CATEGORIES.POKER]);
     const topPokerGame = getGame([CATEGORIES.TOP, CATEGORIES.POKER]);
 
-    expect(component.isGameBelongToTab(pokerGame, 'top')).toBe(false);
-    expect(component.isGameBelongToTab(pokerGame, 'poker')).toBe(true);
-    expect(component.isGameBelongToTab(topPokerGame, 'top')).toBe(true);
-    expect(component.isGameBelongToTab(topPokerGame, 'poker')).toBe(true);
+    expect(component.isGameBelongToTab(newPokerGame, CATEGORIES.NEW)).toBe(true);
+    expect(component.isGameBelongToTab(topPokerGame, CATEGORIES.NEW)).toBe(false);
+
+    expect(component.isGameBelongToTab(newPokerGame, CATEGORIES.TOP)).toBe(false);
+    expect(component.isGameBelongToTab(topPokerGame, CATEGORIES.TOP)).toBe(true);
+
+    expect(component.isGameBelongToTab(newPokerGame, CATEGORIES.POKER)).toBe(true);
+    expect(component.isGameBelongToTab(topPokerGame, CATEGORIES.POKER)).toBe(true);
+
+    expect(component.isGameBelongToTab(newPokerGame, CATEGORIES.SLOTS)).toBe(false);
+    expect(component.isGameBelongToTab(topPokerGame, CATEGORIES.SLOTS)).toBe(false);
   });
 
   it('should filter games by jackpot value', () => {
     const gameWithJackpot = getGame([], 1234);
     const gameWithoutJackpot = getGame([]);
 
-    expect(component.isGameBelongToTab(gameWithJackpot, 'jackpot')).toBe(true);
-    expect(component.isGameBelongToTab(gameWithoutJackpot, 'jackpot')).toBe(false);
+    expect(component.isGameBelongToTab(gameWithJackpot, JACKPOT)).toBe(true);
+    expect(component.isGameBelongToTab(gameWithoutJackpot, JACKPOT)).toBe(false);
   });
 
   it('should display proper games in section "other"', () => {
@@ -85,8 +92,8 @@ describe('GamesComponent', () => {
     const virtualGame = getGame([CATEGORIES.VIRTUAL]);
     const funGame = getGame([CATEGORIES.FUN]);
 
-    expect(component.isGameBelongToTab(ballGame, 'other')).toBe(true);
-    expect(component.isGameBelongToTab(virtualGame, 'other')).toBe(true);
-    expect(component.isGameBelongToTab(funGame, 'other')).toBe(true);
+    expect(component.isGameBelongToTab(ballGame, OTHER)).toBe(true);
+    expect(component.isGameBelongToTab(virtualGame, OTHER)).toBe(true);
+    expect(component.isGameBelongToTab(funGame, OTHER)).toBe(true);
   });
 });
