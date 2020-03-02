@@ -22,4 +22,24 @@ describe('GameCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render jackpot block', () => {
+
+  });
+
+  it('should format jackpot value', () => {
+
+  });
+
+  it('should show "NEW" ribbon', () => {
+
+  });
+
+  it('should show "TOP" ribbon', () => {
+
+  });
+
+  it('should has class "hidden"', () => {
+
+  });
 });

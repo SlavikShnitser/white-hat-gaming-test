@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
+
 import { Game } from '../models/Game';
 import { RibbonConfig } from '../models/RibbonConfig';
 import { CATEGORIES, NEW_RIBBON_CONFIG, TOP_RIBBON_CONFIG } from '../constants';

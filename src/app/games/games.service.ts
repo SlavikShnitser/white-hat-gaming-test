@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/index';
+import { Observable } from 'rxjs';
+
 import { Game } from './models/Game';
 import { JackpotInfo } from './models/JackpotInfo';
+import { API_PATH } from './constants';
 
 @Injectable()
 export class GamesService {
@@ -15,7 +17,7 @@ export class GamesService {
    * @returns Observable with array of all games.
    */
   getGames(): Observable<Game[]> {
-    const url = 'http://stage.whgstage.com/front-end-test/games.php';
+    const url = `${API_PATH}/games.php`;
     return this.http.get<Game[]>(url);
   }
 
@@ -24,7 +26,7 @@ export class GamesService {
    * @returns Observable with array of jackpots information.
    */
   getJackpots(): Observable<JackpotInfo[]> {
-    const url = 'http://stage.whgstage.com/front-end-test/jackpots.php';
+    const url = `${API_PATH}/jackpots.php`;
     return this.http.get<JackpotInfo[]>(url);
   }
 }

@@ -35,10 +35,10 @@ export class GamesComponent implements OnInit {
 
   ngOnInit(): void {
     const activeTab$ = this.route.params.pipe(
-      map(params => params.category),
+      map(params => params.activeTab),
       tap(activeTab => {
-        this.canShowNew = activeTab !== CATEGORIES.NEW;
-        this.canShowTop = activeTab !== CATEGORIES.TOP;
+        this.canShowNew = this.isCanShowNew(activeTab);
+        this.canShowTop = this.isCanShowTop(activeTab);
       })
     );
     const allGames$ = this.gamesService.getGames();
@@ -47,9 +47,7 @@ export class GamesComponent implements OnInit {
     );
 
     this.gamesToDisplay$ = combineLatest([
-      activeTab$,
-      allGames$,
-      jackpots$
+      activeTab$, allGames$, jackpots$
     ]).pipe(
       map(([activeTab, games, jackpots]) => {
         return games
@@ -63,6 +61,28 @@ export class GamesComponent implements OnInit {
     return item.id;
   }
 
+  /**
+   * @param activeTab The name of active tab.
+   * @returns `true` if activeTab not equal to `CATEGORIES.NEW`.
+   */
+  isCanShowNew(activeTab: string): boolean {
+    return activeTab !== CATEGORIES.NEW;
+  }
+
+  /**
+   * @param activeTab The name of active tab.
+   * @returns `true` if activeTab not equal to `CATEGORIES.TOP`.
+   */
+  isCanShowTop(activeTab: string): boolean {
+    return activeTab !== CATEGORIES.TOP;
+  }
+
+  /**
+   * Sets property `jackpot` to the [[Game]] instance if it exists in `jackpots` array.
+   * @param game Instance of [[Game]].
+   * @param jackpots An array of [[JackpotInfo]] instances.
+   * @returns Instance of [[Game]].
+   */
   mapJackpotToGame(game: Game, jackpots: JackpotInfo[]): Game {
     const jackpot = jackpots.find(jackpotItem => jackpotItem.game === game.id);
     return jackpot !== undefined
@@ -70,6 +90,12 @@ export class GamesComponent implements OnInit {
       : game;
   }
 
+  /**
+   * Checks if given [[Game]] instance should be displayed on selected `tab`.
+   * @param game Instance of [[Game]].
+   * @param tab The name of tab.
+   * @returns `true` if game should be displayed, otherwise `false`.
+   */
   isGameBelongToTab(game: Game, tab: string): boolean {
     if (tab === JACKPOT) {
       return game.jackpot !== undefined;

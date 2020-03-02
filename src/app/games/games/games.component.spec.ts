@@ -22,4 +22,28 @@ describe('GamesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should check if "NEW" ribbon can be displayed', () => {
+
+  });
+
+  it('should check if "TOP" ribbon can be displayed', () => {
+
+  });
+
+  it('should map jackpot amount to game', () => {
+
+  });
+
+  it('should filter games list by category', () => {
+
+  });
+
+  it('should filter games by jackpot value', () => {
+
+  });
+
+  it('should display proper games in section "other"', () => {
+
+  });
 });

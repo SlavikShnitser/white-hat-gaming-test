@@ -5,7 +5,7 @@ import { GamesService } from './games.service';
 
 const routes: Routes = [
   {
-    path: ':category',
+    path: ':activeTab',
     component: GamesComponent
   }
 ];
