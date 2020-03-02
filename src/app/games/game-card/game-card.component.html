@@ -1,8 +1,10 @@
-<div class="container" [class.hidden]="hidden">
+<div class="container">
 
   <div class="game-card">
 
-    <img class="game-card__background" [src]="game.image" (error)="imageLoadErrorHandler()">
+    <img class="game-card__background"
+         [src]="game.image"
+         [alt]="game.name" />
 
     <div class="game-card__play-btn"></div>
 
@@ -22,4 +24,3 @@
   </div>
 
 </div>
-

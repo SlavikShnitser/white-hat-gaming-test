@@ -29,9 +29,6 @@ export class GameCardComponent implements OnInit, OnChanges {
    */
   ribbonConfig: RibbonConfig;
 
-  /** Set to `true` to hide component. */
-  hidden = false;
-
   ngOnInit(): void {
     this.ribbonConfig = this.getRibbonConfig();
   }
@@ -53,12 +50,5 @@ export class GameCardComponent implements OnInit, OnChanges {
       return TOP_RIBBON_CONFIG;
     }
     return null;
-  }
-
-  /**
-   * Handles error of image load.
-   */
-  imageLoadErrorHandler() {
-    this.hidden = true;
   }
 }

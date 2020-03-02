@@ -19,12 +19,12 @@ export const CATEGORIES = {
   BALL: 'ball',
   FUN: 'fun',
   VIRTUAL: 'virtual',
+  LIVE: 'live',
+  TABLE: 'table'
 };
 
-/** Toolbar labels that not related to categories.. */
+/** Toolbar labels that not related to categories. */
 export const JACKPOT = 'jackpot';
-export const LIVE = 'live';
-export const TABLE = 'table';
 export const OTHER = 'other';
 
 /** An array of toolbar items. */
@@ -33,12 +33,12 @@ export const TOOLBAR_ITEMS: ToolbarItem[] = [
   { label: 'New Games', path: CATEGORIES.NEW },
   { label: 'Slots', path: CATEGORIES.SLOTS },
   { label: 'Jackpots', path: JACKPOT },
-  { label: 'Live', path: LIVE },                            // <-- ask about this item
+  { label: 'Live', path: CATEGORIES.LIVE },
   { label: 'Blackjack', path: CATEGORIES.BLACKJACK },
   { label: 'Roulette', path: CATEGORIES.ROULETTE },
-  { label: 'Table', path: TABLE },                          // <-- ask about this item
+  { label: 'Table', path: CATEGORIES.TABLE },
   { label: 'Poker', path: CATEGORIES.POKER },
-  { label: 'Other', path: OTHER },
+  { label: 'Other', path: OTHER }
 ];
 
 /** Ribbon config for games with category "NEW". */

@@ -38,8 +38,4 @@ describe('GameCardComponent', () => {
   it('should show "TOP" ribbon', () => {
 
   });
-
-  it('should has class "hidden"', () => {
-
-  });
 });
