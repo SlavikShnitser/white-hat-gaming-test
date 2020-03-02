@@ -7,6 +7,11 @@ const routes: Routes = [
   {
     path: ':activeTab',
     component: GamesComponent
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'top'
   }
 ];
 
