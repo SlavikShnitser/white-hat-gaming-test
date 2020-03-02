@@ -2,9 +2,10 @@ import { Game } from './models/Game';
 
 /**
  * Creates new [[Game]] instance with default values for properties `name`, `image` and `id`.
- * The properties `categories` and `jackpot` can be configured by params.
- * @param categories Array of game categories IDs.
- * @param jackpot Amount of jackpot (optional).
+ * Properties `categories` and `jackpot` can be configured by params.
+ * @param categories Array of category IDs.
+ * @param jackpot Jackpot amount (optional).
+ * @returns [[Game]] instance.
  */
 export const getGame = (categories: string[], jackpot?: number): Game => {
   return  {

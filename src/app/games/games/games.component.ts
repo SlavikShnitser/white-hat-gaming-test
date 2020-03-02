@@ -34,20 +34,8 @@ export class GamesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const activeTab$ = this.route.params.pipe(
-      map(params => params.activeTab),
-      tap(activeTab => {
-        this.canShowNew = this.isCanShowNew(activeTab);
-        this.canShowTop = this.isCanShowTop(activeTab);
-      })
-    );
-    const allGames$ = this.gamesService.getGames();
-    const jackpots$ = interval(FETCH_JACKPOT_INTERVAL).pipe(
-      switchMap(() => this.gamesService.getJackpots())
-    );
-
     this.gamesToDisplay$ = combineLatest([
-      activeTab$, allGames$, jackpots$
+      this.activeTab$, this.allGames$, this.jackpots$
     ]).pipe(
       map(([activeTab, games, jackpots]) => {
         return games
@@ -57,8 +45,35 @@ export class GamesComponent implements OnInit {
     );
   }
 
-  trackById(item: Game) {
-    return item.id;
+  /**
+   * Returns an observable with string that equal to router parameter `activeTab`.
+   * Updates properties `canShowNew` and `canShowTop`.
+   */
+  get activeTab$(): Observable<string> {
+    return this.route.params.pipe(
+      map(params => params.activeTab),
+      tap(activeTab => {
+        this.canShowNew = this.isCanShowNew(activeTab);
+        this.canShowTop = this.isCanShowTop(activeTab);
+      })
+    );
+  }
+
+  /**
+   * Returns an observable with array of all games.
+   */
+  get allGames$(): Observable<Game[]> {
+    return this.gamesService.getGames();
+  }
+
+  /**
+   * Returns an observable with array of jackpots information.
+   * Updates every [[FETCH_JACKPOT_INTERVAL]] ms.
+   */
+  get jackpots$(): Observable<JackpotInfo[]> {
+    return interval(FETCH_JACKPOT_INTERVAL).pipe(
+      switchMap(() => this.gamesService.getJackpots())
+    );
   }
 
   /**
@@ -86,7 +101,7 @@ export class GamesComponent implements OnInit {
   mapJackpotToGame(game: Game, jackpots: JackpotInfo[]): Game {
     const jackpot = jackpots.find(jackpotItem => jackpotItem.game === game.id);
     return jackpot !== undefined
-      ? { ...game, jackpot: jackpot.amount } as Game
+      ? { ...game, jackpot: jackpot.amount }
       : game;
   }
 
@@ -110,4 +125,7 @@ export class GamesComponent implements OnInit {
     return game.categories.indexOf(tab) !== -1;
   }
 
+  trackById(item: Game) {
+    return item.id;
+  }
 }
