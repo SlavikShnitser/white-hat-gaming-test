@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, interval, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/internal/operators';
@@ -12,7 +12,8 @@ import { CATEGORIES, FETCH_JACKPOT_INTERVAL, JACKPOT, OTHER, TOOLBAR_ITEMS } fro
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
-  styleUrls: ['./games.component.scss']
+  styleUrls: ['./games.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GamesComponent implements OnInit {
   /** An array of toolbar items. */

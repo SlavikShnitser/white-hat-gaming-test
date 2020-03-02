@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Game } from '../models/Game';
 import { RibbonConfig } from '../models/RibbonConfig';
 import { CATEGORIES, NEW_RIBBON_CONFIG, TOP_RIBBON_CONFIG } from '../constants';
@@ -6,7 +6,8 @@ import { CATEGORIES, NEW_RIBBON_CONFIG, TOP_RIBBON_CONFIG } from '../constants';
 @Component({
   selector: 'app-game-card',
   templateUrl: './game-card.component.html',
-  styleUrls: ['./game-card.component.scss']
+  styleUrls: ['./game-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GameCardComponent implements OnInit, OnChanges {
   /** An instance of [[Game]] to be displayed. */
