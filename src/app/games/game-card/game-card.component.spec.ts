@@ -1,44 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GameCardComponent } from './game-card.component';
-import { Game } from '../models/Game';
 import { CATEGORIES } from '../constants';
+import { getGame } from '../test-utils';
 
 describe('GameCardComponent', () => {
   let component: GameCardComponent;
   let fixture: ComponentFixture<GameCardComponent>;
-
-  const game: Game = {
-    categories: [],
-    name: 'Zombie Rush',
-    image: '//stage.whgstage.com/scontent/images/games/LEZOMBIERUSH.jpg',
-    id: 'LEZOMBIERUSH'
-  };
-  const gameWithJackpot: Game = {
-    categories: [],
-    name: 'The Wish Master',
-    image: '//stage.whgstage.com/scontent/images/games/NETHEWISHMASTER.jpg',
-    id: 'NETHEWISHMASTER',
-    jackpot: 34418
-  };
-  const topGame: Game = {
-    categories: [CATEGORIES.TOP],
-    name: 'The Wish Master',
-    image: '//stage.whgstage.com/scontent/images/games/NETHEWISHMASTER.jpg',
-    id: 'NETHEWISHMASTER'
-  };
-  const newGame: Game = {
-    categories: [CATEGORIES.NEW],
-    name: 'The Wish Master',
-    image: '//stage.whgstage.com/scontent/images/games/NETHEWISHMASTER.jpg',
-    id: 'NETHEWISHMASTER'
-  };
-  const topNewGame: Game = {
-    categories: [CATEGORIES.TOP, CATEGORIES.NEW],
-    name: 'The Wish Master',
-    image: '//stage.whgstage.com/scontent/images/games/NETHEWISHMASTER.jpg',
-    id: 'NETHEWISHMASTER'
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -53,14 +21,14 @@ describe('GameCardComponent', () => {
   });
 
   it('should create', () => {
-    component.game = game;
+    component.game = getGame([]);
     fixture.detectChanges();
 
     expect(component).toBeTruthy();
   });
 
   it('should not render jackpot block', () => {
-    component.game = game;
+    component.game = getGame([]);
     fixture.detectChanges();
 
     const jackpotContainer = fixture.nativeElement.querySelector('.game-card__jackpot');
@@ -68,7 +36,7 @@ describe('GameCardComponent', () => {
   });
 
   it('should render jackpot block for games with jackpot', () => {
-    component.game = gameWithJackpot;
+    component.game = getGame([], 34418);
     fixture.detectChanges();
 
     const jackpotContainer = fixture.nativeElement.querySelector('.game-card__jackpot');
@@ -76,7 +44,7 @@ describe('GameCardComponent', () => {
   });
 
   it('should format jackpot value', () => {
-    component.game = gameWithJackpot;
+    component.game = getGame([], 34418);
     fixture.detectChanges();
 
     const jackpotContainer = fixture.nativeElement.querySelector('.game-card__jackpot');
@@ -84,7 +52,7 @@ describe('GameCardComponent', () => {
   });
 
   it('should show "NEW" ribbon', () => {
-    component.game = newGame;
+    component.game = getGame([CATEGORIES.NEW]);
     component.canShowNew = true;
     fixture.detectChanges();
 
@@ -94,7 +62,7 @@ describe('GameCardComponent', () => {
   });
 
   it('should show "TOP" ribbon', () => {
-    component.game = topGame;
+    component.game = getGame([CATEGORIES.TOP]);
     component.canShowTop = true;
     fixture.detectChanges();
 
@@ -104,7 +72,7 @@ describe('GameCardComponent', () => {
   });
 
   it('should show "NEW" ribbon if game is new and top', () => {
-    component.game = topNewGame;
+    component.game = getGame([CATEGORIES.NEW, CATEGORIES.TOP]);
     component.canShowNew = true;
     component.canShowTop = true;
     fixture.detectChanges();
@@ -115,7 +83,7 @@ describe('GameCardComponent', () => {
   });
 
   it('should not show ribbon for game without "NEW" or "TOP" categories', () => {
-    component.game = game;
+    component.game = getGame([]);
     component.canShowNew = true;
     component.canShowTop = true;
     fixture.detectChanges();
