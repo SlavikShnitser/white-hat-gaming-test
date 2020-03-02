@@ -37,6 +37,7 @@ $game-card-width: 316px;
 $games-container-hr-padding: 50px;
 
 .games-container {
+  min-height: calc(100vh - 120px);
   margin: 70px auto 0 auto;
   padding: 25px $games-container-hr-padding;
   display: flex;
