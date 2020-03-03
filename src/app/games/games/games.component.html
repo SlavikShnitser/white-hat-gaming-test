@@ -1,7 +1,7 @@
 <div class="container">
   <div class="toolbar">
     <a *ngFor="let item of toolbarItems"
-       [routerLink]="['../' + item.path]"
+       [routerLink]="item.path"
        routerLinkActive="toolbar__item--active"
        class="toolbar__item"
     >

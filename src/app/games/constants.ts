@@ -29,16 +29,16 @@ export const OTHER = 'other';
 
 /** An array of toolbar items. */
 export const TOOLBAR_ITEMS: ToolbarItem[] = [
-  { label: 'Top Games', path: CATEGORIES.TOP },
-  { label: 'New Games', path: CATEGORIES.NEW },
-  { label: 'Slots', path: CATEGORIES.SLOTS },
-  { label: 'Jackpots', path: JACKPOT },
-  { label: 'Live', path: CATEGORIES.LIVE },
-  { label: 'Blackjack', path: CATEGORIES.BLACKJACK },
-  { label: 'Roulette', path: CATEGORIES.ROULETTE },
-  { label: 'Table', path: CATEGORIES.TABLE },
-  { label: 'Poker', path: CATEGORIES.POKER },
-  { label: 'Other', path: OTHER }
+  { label: 'Top Games', path: `../${CATEGORIES.TOP}` },
+  { label: 'New Games', path: `../${CATEGORIES.NEW}` },
+  { label: 'Slots', path: `../${CATEGORIES.SLOTS}` },
+  { label: 'Jackpots', path: `../${JACKPOT}` },
+  { label: 'Live', path: `../${CATEGORIES.LIVE}` },
+  { label: 'Blackjack', path: `../${CATEGORIES.BLACKJACK}` },
+  { label: 'Roulette', path: `../${CATEGORIES.ROULETTE}` },
+  { label: 'Table', path: `../${CATEGORIES.TABLE}` },
+  { label: 'Poker', path: `../${CATEGORIES.POKER}` },
+  { label: 'Other', path: `../${OTHER}` }
 ];
 
 /** Ribbon config for games with category "NEW". */
