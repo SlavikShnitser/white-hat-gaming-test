@@ -27,6 +27,15 @@ describe('GameCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should display game name', () => {
+    const game = getGame([]);
+    component.game = game;
+    fixture.detectChanges();
+
+    const nameContainer = fixture.nativeElement.querySelector('.game-card__name');
+    expect(nameContainer.innerText.includes(game.name)).toBe(true);
+  });
+
   it('should not render jackpot block', () => {
     component.game = getGame([]);
     fixture.detectChanges();
