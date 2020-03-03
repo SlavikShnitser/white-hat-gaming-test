@@ -31,6 +31,7 @@ $play-btn-icon-color: #FFFFFF;
   height: 210px;
   margin: 25px 8px;
   border-radius: 20px;
+  background-color: lighten( $toolbar-color, 50% );
   overflow: hidden;
 
   &__background {
