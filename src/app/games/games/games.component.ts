@@ -47,7 +47,7 @@ export class GamesComponent implements OnInit {
 
   /**
    * Returns an observable with string that equal to router parameter `activeTab`.
-   * Updates properties `canShowNew` and `canShowTop`.
+   * Observable updates properties `canShowNew` and `canShowTop`.
    */
   get activeTab$(): Observable<string> {
     return this.route.params.pipe(
@@ -125,7 +125,7 @@ export class GamesComponent implements OnInit {
     return game.categories.indexOf(tab) !== -1;
   }
 
-  trackById(item: Game) {
+  trackById(index: number, item: Game) {
     return item.id;
   }
 }
