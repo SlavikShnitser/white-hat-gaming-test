@@ -37,8 +37,8 @@ export class GamesComponent implements OnInit {
     this.gamesToDisplay$ = combineLatest([
       this.activeTab$, this.allGames$, this.jackpots$
     ]).pipe(
-      map(([activeTab, games, jackpots]) => {
-        return games
+      map(([activeTab, allGames, jackpots]) => {
+        return allGames
           .map(game => this.mapJackpotToGame(game, jackpots))
           .filter(game => this.isGameBelongToTab(game, activeTab));
       })
