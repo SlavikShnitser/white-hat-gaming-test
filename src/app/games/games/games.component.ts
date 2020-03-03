@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, interval, Observable } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/internal/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 import { GamesService } from '../games.service';
 import { Game } from '../models/Game';
