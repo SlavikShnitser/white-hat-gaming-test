@@ -1,3 +1,7 @@
+@import '../../../theme.scss';
+
+$play-btn-icon-color: #FFFFFF;
+
 .container {
   position: relative;
   cursor: pointer;
@@ -48,14 +52,14 @@
     height: 80px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    border: 4px solid #FFFFFF;
-    background-color: rgba(141, 198, 63, 0.6);
+    border: 4px solid $play-btn-icon-color;
+    background-color: rgba($primary-color, .7);
 
     &:before {
       content: "";
       border-style: solid;
       border-width: 24px 0 24px 34px;
-      border-color: transparent transparent transparent #FFFFFF;
+      border-color: transparent transparent transparent $play-btn-icon-color;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -74,7 +78,7 @@
     width: 100%;
     height: 46px;
     background-color: rgba(0, 0, 0, 0.4);
-    color: #FFFFFF;
+    color: $text-color;
     font-size: 22px;
     font-weight: 700;
   }
@@ -109,10 +113,10 @@
   }
 
   &.new .ribbon__label {
-    color: #FFFFFF;
+    color: $text-color;
   }
 
   &.top .ribbon__label {
-    color: #8DC63F;
+    color: darken( $primary-color, 10% );
   }
 }
