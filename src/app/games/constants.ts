@@ -2,7 +2,7 @@ import { RibbonConfig } from './models/RibbonConfig';
 import { ToolbarItem } from './models/ToolbarItem';
 
 /** The path to the API endpoints. */
-export const API_PATH = 'http://stage.whgstage.com/front-end-test';
+export const API_PATH = './assets';
 
 /** Defines how often jackpot related information should be refreshed. */
 export const FETCH_JACKPOT_INTERVAL = 2000;
